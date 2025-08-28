@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Muhammad Syahrul Adam Saputra</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 15px 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .logo {
+        color: #667eea;
+        font-size: 1.5em;
+        font-weight: 700;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        color: #333;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-weight: 500;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: #667eea;
+        background: rgba(102, 126, 234, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>')
+          repeat;
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        animation: slideInUp 1s ease-out;
+        font-weight: 700;
+      }
+
+      .hero p {
+        font-size: 1.3em;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        animation: slideInUp 1s ease-out 0.3s both;
+        font-weight: 300;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+        color: white;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        animation: slideInUp 1s ease-out 0.6s both;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .section {
+        padding: 100px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5em;
+        color: #2d3436;
+        margin-bottom: 20px;
+        position: relative;
+        font-weight: 700;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b6b, #ee5a6f);
+        border-radius: 2px;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: #636e72;
+        font-size: 1.1em;
+        margin-bottom: 60px;
+        font-weight: 400;
+      }
+
+      .portfolio-container {
+        background: white;
+        border-radius: 25px;
+        padding: 60px 40px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.08);
+        margin-bottom: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .filter-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 50px;
+      }
+
+      .filter-btn {
+        background: #f8f9fa;
+        color: #495057;
+        border: 2px solid transparent;
+        padding: 12px 24px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        font-size: 0.9em;
+      }
+
+      .filter-btn.active {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .filter-btn:hover {
+        background: #e9ecef;
+        transform: translateY(-2px);
+        border-color: #667eea;
+      }
+
+      .filter-btn.active:hover {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+      }
+
+      /* Group styling */
+      .portfolio-group {
+        margin-bottom: 50px;
+        opacity: 0;
+        animation: slideInUp 0.6s ease forwards;
+      }
+
+      .group-title {
+        font-size: 1.8em;
+        font-weight: 700;
+        color: #2d3436;
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #667eea;
+        position: relative;
+      }
+
+      .group-title::before {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .portfolio-item {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.4s ease;
+        cursor: pointer;
+        border: 1px solid #f1f3f4;
+      }
+
+      .portfolio-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        border-color: #667eea;
+      }
+
+      .item-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 280px;
+        background: #f8f9fa;
+        color: white;
+        font-size: 3em;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid #f1f3f4;
+      }
+
+      .item-image img.item-icon {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        background: white;
+        padding: 20px;
+      }
+
+      .item-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          rgba(102, 126, 234, 0.1),
+          rgba(118, 75, 162, 0.1)
+        );
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .portfolio-item:hover .item-image::before {
+        opacity: 1;
+      }
+
+      .item-info {
+        padding: 30px 25px;
+      }
+
+      .item-title {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #2d3436;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .item-category {
+        color: #667eea;
+        font-size: 0.9em;
+        font-weight: 600;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .item-description {
+        color: #6c757d;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        font-size: 0.95em;
+      }
+
+      .item-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag {
+        background: #f8f9fa;
+        color: #495057;
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 0.8em;
+        font-weight: 500;
+        border: 1px solid #e9ecef;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        animation: slideInModal 0.3s ease;
+      }
+
+      @keyframes slideInModal {
+        from {
+          opacity: 0;
+          transform: translate(-50%, -60%);
+        }
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .close {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        font-size: 2em;
+        cursor: pointer;
+        color: #999;
+        transition: all 0.3s ease;
+      }
+
+      .close:hover {
+        color: #ff6b6b;
+        transform: scale(1.1);
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: #333;
+        font-size: 1.5em;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu-toggle:hover {
+        background: rgba(102, 126, 234, 0.1);
+        color: #667eea;
+      }
+
+      .floating-shapes {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .shape {
+        position: absolute;
+        opacity: 0.08;
+        animation: floatAround 20s infinite ease-in-out;
+      }
+
+      .shape:nth-child(1) {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .shape:nth-child(2) {
+        top: 60%;
+        right: 15%;
+        animation-delay: 7s;
+      }
+
+      .shape:nth-child(3) {
+        bottom: 30%;
+        left: 20%;
+        animation-delay: 14s;
+      }
+
+      @keyframes floatAround {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-30px) rotate(90deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+        75% {
+          transform: translateY(-40px) rotate(270deg);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          padding: 20px;
+          gap: 15px;
+          border-radius: 0 0 20px 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .mobile-menu-toggle {
+          display: block;
+        }
+
+        .hero h1 {
+          font-size: 2.5em;
+        }
+
+        .hero p {
+          font-size: 1.1em;
+        }
+
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .portfolio-item {
+          margin: 0 10px;
+        }
+
+        .section {
+          padding: 60px 15px;
+        }
+
+        .portfolio-container {
+          padding: 40px 20px;
+          border-radius: 20px;
+        }
+
+        .item-image {
+          height: 240px;
+        }
+
+        .item-info {
+          padding: 25px 20px;
+        }
+
+        .modal-content {
+          padding: 30px 25px;
+          width: 95%;
+          border-radius: 20px;
+        }
+
+        .group-title {
+          font-size: 1.5em;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2em;
+        }
+
+        .section-title {
+          font-size: 2em;
+        }
+
+        .filter-buttons {
+          gap: 10px;
+        }
+
+        .filter-btn {
+          padding: 10px 16px;
+          font-size: 0.85em;
+        }
+
+        .group-title {
+          font-size: 1.3em;
+        }
+      }
+
+      /* Animations for groups */
+      .portfolio-group:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .portfolio-group:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .portfolio-group:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .portfolio-group:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .portfolio-group:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .portfolio-group:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+      .portfolio-group:nth-child(7) {
+  animation-delay: 0.7s;
+}
+
+      /* Focus states for accessibility */
+      .filter-btn:focus,
+      .cta-button:focus,
+      .nav-links a:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+      }
+
+      .portfolio-item:focus {
+        outline: 3px solid #667eea;
+        outline-offset: 3px;
+      }
+
+      /* Tambah di bagian akhir CSS */
+.portfolio-item[data-category="iot"] .item-image {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.portfolio-item[data-category="iot"] .item-category {
+  color: #667eea;
+}
+
+.main-filter-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.main-filter-btn {
+  background: linear-gradient(45deg, #f8f9fa, #ffffff);
+  color: #495057;
+  border: 3px solid transparent;
+  padding: 15px 35px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-weight: 700;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.main-filter-btn.active {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-filter-btn:hover {
+  background: linear-gradient(45deg, #e9ecef, #f1f3f4);
+  transform: translateY(-2px);
+  border-color: #667eea;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.main-filter-btn.active:hover {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+}
+.main-filter-buttons {
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.main-filter-btn {
+  padding: 12px 25px;
+  font-size: 1em;
+}
+
+/* Image Gallery Styles */
+.image-gallery {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.gallery-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: white;
+  padding: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-thumbnails {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.gallery-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  object-fit: cover;
+  border: 2px solid transparent;
+}
+
+.gallery-thumb:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.gallery-thumb.active {
+  opacity: 1;
+  border-color: #667eea;
+  transform: scale(1.1);
+}
+
+/* Image counter */
+.image-counter {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  backdrop-filter: blur(10px);
+}
+/* Tambahkan di bagian CSS */
+.portfolio-item.compact-view .item-info {
+  display: none;
+}
+
+.portfolio-item.compact-view {
+  height: 280px; /* Hanya tinggi gambar */
+}
+
+.portfolio-item.compact-view .item-image {
+  border-bottom: none;
+  border-radius: 20px;
+}
+
+/* Indicator untuk menunjukkan item bisa diklik */
+.portfolio-item.compact-view::after {
+  content: "Click to view details";
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.portfolio-item.compact-view:hover::after {
+  opacity: 1;
+}
+
+/* Toggle button untuk switch view */
+.view-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
+.toggle-btn {
+  background: #f8f9fa;
+  color: #495057;
+  border: 2px solid #e9ecef;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border-color: transparent;
+}
+
+.toggle-btn:hover {
+  background: #e9ecef;
+  border-color: #667eea;
+}
+
+.toggle-btn.active:hover {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+}
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .portfolio-item.compact-view {
+    height: 200px;
+  }
+  
+  .portfolio-item.compact-view .item-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-toggle {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .toggle-btn {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <div class="floating-shapes">
+      <div class="shape">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="35" fill="#667eea" />
+        </svg>
+      </div>
+      <div class="shape">
+        <svg width="100" height="100" viewBox="0 0 100 100">
+          <rect x="25" y="25" width="50" height="50" fill="#ff6b6b" rx="10" />
+        </svg>
+      </div>
+      <div class="shape">
+        <svg width="70" height="70" viewBox="0 0 70 70">
+          <polygon points="35,10 60,50 10,50" fill="#ffeaa7" />
+        </svg>
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">
+          <i class="fas fa-palette"></i>
+          SYAHRUL ADAM
+        </a>
+        <ul class="nav-links">
+    <li>
+    <a href="cv.html" target="_blank" rel="noopener noreferrer">
+        <i class="fa-regular fa-file-lines"></i> Akses CV
+    </a>
+</li>
+
+    <li>
+        <a href="cv.pdf" download="cv.pdf">
+            <i class="fas fa-download"></i> Download CV
+        </a>
+    </li>
+</ul>
+
+
+
+        
+
+
+        
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <section id="portfolio" class="section">
+      <div class="portfolio-container">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-subtitle">
+        </p>
+
+        <!-- Tambahkan filter utama -->
+<div class="main-filter-buttons">
+  <button class="main-filter-btn" data-main-filter="design">Desain</button>
+  <button class="main-filter-btn" data-main-filter="iot">IoT</button>
+</div>
+
+        <div class="filter-buttons">
+  <button class="filter-btn" data-filter="lg">Logo Marketplace Collection (LogoGround)</button>
+  <button class="filter-btn" data-filter="logoku">Logo Marketplace Collection (Logoku)</button>
+  <button class="filter-btn" data-filter="hmte">Himpunan Mahasiswa Teknik Elektro Projects</button>
+  <button class="filter-btn" data-filter="serum">Seni Rupa UMBandung</button>
+  <button class="filter-btn" data-filter="komisi">Commission Works</button>
+</div>
+
+        <div id="portfolio-content">
+          <!-- HMTE Series - Organization Projects Group -->
+          <div class="portfolio-group" data-group="hmte">
+            <h3 class="group-title">HMTE Organization Projects</h3>
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="hmte">
+  <div class="item-image">
+    <img
+      src="hmte1.jpeg"
+      alt="HMTE Instagram Template 1"
+      class="item-icon"
+    />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">HMTE Instagram Template 1</h3>
+    <p class="item-category">Organizational Design</p>
+    <p class="item-description">
+      Desain template Instagram untuk publikasi kegiatan Himpunan Mahasiswa
+      Teknik Elektro (HMTE). Template ini digunakan secara rutin untuk menyampaikan
+      informasi acara akademik, seminar, workshop, dan kegiatan organisasi,
+      dengan pembaruan desain setiap bulan agar tetap variatif dan menarik.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Organization</span>
+      <span class="tag">Academic</span>
+      <span class="tag">Instagram</span>
+      <span class="tag">Template</span>
+    </div>
+  </div>
+</div>
+
+<div class="portfolio-item" data-category="hmte">
+  <div class="item-image">
+    <img
+      src="hmte2.jpeg"
+      alt="HMTE Instagram Template 2"
+      class="item-icon"
+    />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">HMTE Instagram Template 2</h3>
+    <p class="item-category">Organizational Design</p>
+    <p class="item-description">
+      Desain template Instagram untuk publikasi kegiatan Himpunan Mahasiswa
+      Teknik Elektro (HMTE). Template ini digunakan secara rutin untuk menyampaikan
+      informasi acara akademik, seminar, workshop, dan kegiatan organisasi,
+      dengan pembaruan desain setiap bulan agar tetap variatif dan menarik.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Organization</span>
+      <span class="tag">Academic</span>
+      <span class="tag">Instagram</span>
+      <span class="tag">Template</span>
+    </div>
+  </div>
+</div>
+
+
+              <div class="portfolio-item" data-category="hmte">
+  <div class="item-image">
+    <img
+      src="hmte3.jpeg"
+      alt="HMTE Welcome Banner"
+      class="item-icon"
+    />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">HMTE Welcome Banner</h3>
+    <p class="item-category">Print Design</p>
+    <p class="item-description">
+      Desain banner cetak untuk menyambut mahasiswa baru Universitas Muhammadiyah
+      Bandung oleh Himpunan Mahasiswa Teknik Elektro (HMTE). 
+      Banner ini dicetak dalam ukuran besar untuk dipasang pada acara resmi,
+      dengan elemen visual khas elektro yang memperkuat identitas organisasi.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Organization</span>
+      <span class="tag">Event</span>
+      <span class="tag">Banner</span>
+      <span class="tag">Print Design</span>
+      <span class="tag">HMTE</span>
+    </div>
+  </div>
+</div>
+
+
+              <div class="portfolio-item" data-category="hmte">
+  <div class="item-image">
+    <img src="hmte4.jpeg" alt="HMTE Inauguration Banner" class="item-icon" />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">HMTE Inauguration Design</h3>
+    <p class="item-category">Digital & Print Design</p>
+    <p class="item-description">
+      Desain publikasi untuk acara pelantikan pengurus Himpunan Mahasiswa 
+      Teknik Elektro (HMTE) Universitas Muhammadiyah Bandung periode 2023–2024. 
+      Karya ini dibuat dalam dua format: versi digital untuk media sosial dan 
+      versi cetak dalam bentuk banner acara. Elemen visual mengusung identitas 
+      teknik elektro dengan tipografi yang tegas dan warna modern, mendukung tema 
+      <em>“Bersama Elektrifikasi Masa Depan”</em>.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Organization</span>
+      <span class="tag">Event</span>
+      <span class="tag">Banner</span>
+      <span class="tag">Social Media</span>
+      <span class="tag">Print Design</span>
+      <span class="tag">HMTE</span>
+    </div>
+  </div>
+</div>
+
+
+              <div class="portfolio-item" data-category="hmte">
+  <div class="item-image">
+    <img
+      src="hmte5.jpeg"
+      alt="HMTE Electrical Engineering Twibbon"
+      class="item-icon"
+    />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">Electrical Engineering Twibbon</h3>
+    <p class="item-category">Digital Campaign</p>
+    <p class="item-description">
+      Desain <em>twibbon</em> untuk memperkenalkan serta mempererat identitas 
+      mahasiswa baru Teknik Elektro Universitas Muhammadiyah Bandung. 
+      Template ini dipakai sebagai bagian dari kampanye digital 
+      <em>“I’m Ready To Be Part of Electrical Engineering”</em>, 
+      yang mendorong rasa kebanggaan dan kebersamaan antar mahasiswa.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Organization</span>
+      <span class="tag">Twibbon</span>
+      <span class="tag">Digital Campaign</span>
+      <span class="tag">HMTE</span>
+    </div>
+  </div>
+</div>
+
+
+              <div class="portfolio-item" data-category="hmte">
+  <div class="item-image">
+    <img
+      src="hmte6.png"
+      alt="HMTE OSPRO Keychain"
+      class="item-icon"
+    />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">OSPRO Keychain</h3>
+    <p class="item-category">Merchandise</p>
+    <p class="item-description">
+      Desain gantungan kunci resmi untuk kegiatan Ospek Program Studi 
+      Teknik Elektro Universitas Muhammadiyah Bandung tahun akademik 2022/2023. 
+      Merchandise ini tidak hanya menjadi identitas, tetapi juga simbol 
+      kebersamaan mahasiswa baru dalam menjalani kegiatan OSPRO dengan semangat 
+      <em>Solid, Elegant, Technical, Religious, Unique, Mind (SETRUM)</em>.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Merchandise</span>
+      <span class="tag">OSPRO</span>
+      <span class="tag">HMTE</span>
+      <span class="tag">Identity</span>
+    </div>
+  </div>
+</div>
+
+
+              <div class="portfolio-item" data-category="hmte">
+  <div class="item-image">
+    <img
+      src="hmte7.png"
+      alt="HMTE OSPRO Sticker"
+      class="item-icon"
+    />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">OSPRO Sticker Design</h3>
+    <p class="item-category">Merchandise</p>
+    <p class="item-description">
+      Desain stiker khusus untuk kegiatan Ospek Program Studi Teknik Elektro 
+      Universitas Muhammadiyah Bandung tahun 2022. Stiker ini berfungsi sebagai 
+      identitas mahasiswa baru sekaligus media promosi acara OSPRO. Dengan gaya 
+      tipografi modern dan minimalis, desain ini dirancang agar mudah diaplikasikan 
+      pada berbagai media cetak.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Merchandise</span>
+      <span class="tag">Sticker</span>
+      <span class="tag">Print Design</span>
+      <span class="tag">HMTE</span>
+    </div>
+  </div>
+</div>
+
+              
+            </div>
+          </div>
+
+          <!-- Serum Series - Educational Content Group -->
+          <div class="portfolio-group" data-group="serum">
+            <h3 class="group-title">Seni Rupa UMBandung (Serum)</h3>
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="serum">
+  <div class="item-image">
+    <img
+      src="serum.jpeg"
+      alt="Poster UKM Seni Rupa UMB"
+      class="item-icon"
+    />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">Poster UKM Seni Rupa</h3>
+    <p class="item-category">Event Design</p>
+    <p class="item-description">
+      Desain poster untuk kegiatan "First Impression and Sharing Session" 
+      yang diselenggarakan oleh UKM Seni Rupa Universitas Muhammadiyah Bandung. 
+      Poster ini menampilkan tipografi modern dengan sentuhan artistik untuk 
+      mencerminkan kreativitas seni rupa sekaligus menarik perhatian audiens. 
+      Acara ini berfokus pada pameran, materi, hiburan, dan sesi berbagi.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Event</span>
+      <span class="tag">Poster</span>
+      <span class="tag">UKM Seni Rupa</span>
+      <span class="tag">Creative Design</span>
+    </div>
+  </div>
+</div>
+
+            </div>
+          </div>
+          <!-- LG Series - Logo Design Group -->
+          <div class="portfolio-group" data-group="lg">
+            <h3 class="group-title">
+              Logo Marketplace Collection (LogoGround)
+            </h3>
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="lg">
+                <div class="item-image">
+                  <img src="lg2.jpg" alt="Logo Contest" class="item-icon" />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">Cactus Clip Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini dirancang dengan menggabungkan bentuk kaktus dan
+                    tiga clip kertas sebagai elemen visual utama. Kaktus
+                    merepresentasikan ketahanan dan kemampuan beradaptasi,
+                    sedangkan clip kertas menggambarkan kerapihan, keteraturan,
+                    serta keterhubungan dengan aktivitas percetakan dan
+                    pengelolaan dokumen. Desain dibuat dalam gaya minimalis
+                    berbasis garis, sehingga menghasilkan tampilan modern yang
+                    sederhana sekaligus mudah dikenali. Pendekatan berbasis
+                    vektor memastikan logo ini fleksibel untuk diaplikasikan
+                    pada berbagai media, baik cetak maupun digital.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Minimalist</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logo">
+                <div class="item-image">
+                  <img
+                    src="lg3.jpg"
+                    alt="Monogram N Paper Clip Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">Monogram N Paper Clip Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini memadukan huruf "N" dengan bentuk clip kertas yang
+                    dibingkai dalam lingkaran. Huruf "N" dirancang dengan gaya
+                    monogram sehingga membentuk identitas tipografi yang
+                    sederhana namun kuat. Clip kertas digunakan sebagai elemen
+                    simbolik yang merepresentasikan kerapihan, keteraturan,
+                    serta keterhubungan dengan dunia percetakan dan dokumen.
+                    Komposisi lingkaran menambah kesan seimbang dan profesional,
+                    sementara pendekatan berbasis vektor memastikan
+                    fleksibilitas penggunaan pada berbagai media cetak maupun
+                    digital.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Typography</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logo">
+                <div class="item-image">
+                  <img
+                    src="lg4.jpg"
+                    alt="Bookmarks Paper Clip Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">Bookmarks Paper Clip Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menggabungkan bentuk clip kertas dengan simbol
+                    bookmark untuk menciptakan identitas visual yang sederhana
+                    dan bermakna. Clip kertas melambangkan kerapihan serta
+                    fungsi praktis dalam mengelola dokumen, sedangkan bookmark
+                    menandakan pengetahuan, literasi, dan pengorganisasian
+                    informasi. Desain menggunakan gaya minimalis berbasis garis
+                    sehingga mudah dikenali, modern, dan fleksibel. Dengan
+                    format vektor, logo ini dapat diaplikasikan secara konsisten
+                    pada berbagai media, baik cetak maupun digital.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Minimalist</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logo">
+                <div class="item-image">
+                  <img
+                    src="lg.jpg"
+                    alt="Clip Airplane Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">Clip Airplane Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menggabungkan bentuk clip kertas dengan siluet
+                    pesawat untuk menghadirkan identitas visual yang unik dan
+                    bermakna. Clip kertas melambangkan kerapihan, keteraturan,
+                    dan pengelolaan dokumen, sedangkan pesawat merepresentasikan
+                    dinamika, perjalanan, serta kemajuan. Kombinasi keduanya
+                    menciptakan simbol yang relevan bagi bidang percetakan,
+                    logistik, maupun layanan berbasis dokumen. Desain minimalis
+                    berbasis garis menjaga kesan modern dan profesional,
+                    sementara format vektor memungkinkan penerapan yang
+                    konsisten pada berbagai media, baik cetak maupun digital.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Minimalist</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logoku Series - Personal Logo Group -->
+          <div class="portfolio-group" data-group="logoku">
+            <h3 class="group-title">Logo Marketplace Collection (Logoku)</h3>
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku1.png"
+                    alt="D For Diamond Luxury Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">D For Diamond Luxury Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini merupakan kombinasi huruf "D" dengan bentuk
+                    berlian yang diberi sentuhan warna emas untuk menghadirkan
+                    kesan elegan dan mewah. Huruf "D" dirancang dengan proporsi
+                    yang seimbang dan terintegrasi sempurna dengan bentuk
+                    berlian sebagai elemen visual utama. Penggunaan warna emas
+                    memberikan kesan premium dan eksklusif, sementara desain
+                    minimalis memastikan logo mudah dikenali dan mudah
+                    diaplikasikan. Pendekatan berbasis vektor memungkinkan
+                    fleksibilitas penggunaan pada berbagai media, dari kartu
+                    nama hingga signage besar, sehingga sangat cocok untuk brand
+                    di bidang perhiasan, fashion, maupun bisnis premium lainnya.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Luxury Design</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku2.png"
+                    alt="Target Clip Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">Target Clip Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menampilkan kombinasi bentuk paper clip dengan
+                    panah yang membentuk target, menciptakan visual yang unik
+                    sekaligus bermakna. Paper clip merepresentasikan kerapihan,
+                    organisasi, dan pengelolaan dokumen, sedangkan panah dan
+                    target melambangkan fokus, presisi, dan pencapaian tujuan.
+                    Desain menggunakan gaya minimalis berbasis garis dengan
+                    komposisi yang seimbang, sehingga menghasilkan identitas
+                    visual yang modern dan profesional. Format vektor
+                    memungkinkan logo ini diaplikasikan secara konsisten pada
+                    berbagai media, baik cetak maupun digital, menjadikannya
+                    pilihan ideal untuk bisnis percetakan, konsultasi, maupun
+                    perusahaan yang mengutamakan ketepatan dan efisiensi.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Minimalist</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku3.png"
+                    alt="Pine Clip Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">Pine Clip Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menggabungkan bentuk pohon pinus dengan elemen
+                    clip untuk menciptakan identitas visual yang organik namun
+                    terstruktur. Pohon pinus melambangkan pertumbuhan, 
+                    keberlanjutan, dan kestabilan, sedangkan elemen clip
+                    menunjukkan keteraturan dan profesionalisme. Desain
+                    menggunakan pendekatan minimalis berbasis garis yang bersih
+                    sehingga mudah dikenali dan modern. Komposisi visual yang
+                    seimbang antara elemen natural dan geometric menciptakan
+                    kesan fresh dan contemporary. Dengan format vektor, logo
+                    ini fleksibel untuk digunakan pada berbagai aplikasi media,
+                    cocok untuk brand yang bergerak di bidang lingkungan,
+                    teknologi hijau, maupun bisnis yang ingin menonjolkan nilai
+                    sustainability.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Minimalist</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku4.png"
+                    alt="Love Spade Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">Love Spade Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini memadukan bentuk hati dengan elemen spade dalam
+                    komposisi yang elegan dan simbolis. Hati merepresentasikan
+                    cinta, passion, dan kedekatan emosional, sedangkan spade
+                    melambangkan kekuatan, determinasi, dan keunggulan. Desain
+                    menggunakan gaya minimalis dengan garis yang tegas namun
+                    tetap lembut, menciptakan keseimbangan visual yang menarik.
+                    Pendekatan berbasis vektor memungkinkan fleksibilitas
+                    tinggi dalam penerapan pada berbagai media, dari digital
+                    hingga cetak. Logo ini sangat cocok untuk brand di bidang
+                    lifestyle, entertainment, fashion, atau bisnis yang ingin
+                    mengkomunikasikan nilai-nilai passion dan excellence secara
+                    bersamaan, dengan daya tarik visual yang kuat dan mudah
+                    diingat.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Minimalist</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>  
+
+              
+
+
+
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Series - Logo Design Group -->
+          <div class="portfolio-group" data-group="personal">
+            <h3 class="group-title">
+              Persona Logo Series
+            </h3>
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku5.png"
+                    alt="Deer Paper Clip Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">Deer Paper Clip Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menggabungkan siluet kepala rusa dengan bentuk
+                    klip kertas untuk menciptakan identitas visual yang unik
+                    dan berkarakter. Rusa melambangkan kelembutan, keanggunan,
+                    dan intuisi yang kuat, sedangkan paper clip merepresentasikan
+                    keteraturan, efisiensi, dan profesionalisme. Desain
+                    menggunakan gaya minimalis berbasis garis dengan proporsi
+                    yang seimbang, menghasilkan logo yang elegan namun mudah
+                    diingat. Pendekatan berbasis vektor memastikan konsistensi
+                    penerapan pada berbagai media, baik cetak maupun digital.
+                    Logo ini sangat cocok untuk brand kreatif, perusahaan
+                    stationery, konsultan profesional, maupun bisnis modern
+                    yang ingin menonjolkan karakter yang berbeda dengan
+                    sentuhan natural namun tetap professional.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Minimalist</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku6.png"
+                    alt="BS Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">BS Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menampilkan monogram modern yang menyatukan huruf
+                    B dan S dengan gaya geometris minimalis yang tegas dan
+                    profesional. Kedua huruf dirancang dengan proporsi yang
+                    seimbang dan terintegrasi dalam satu kesatuan visual yang
+                    harmonis. Desain menggunakan pendekatan berbasis garis
+                    dengan sudut-sudut yang presisi, menciptakan kesan modern
+                    dan sophisticated. Bentuk geometris yang bersih memberikan
+                    fleksibilitas tinggi dalam aplikasi, sementara karakter
+                    yang kuat membuatnya mudah dikenali. Format vektor
+                    memungkinkan penerapan konsisten pada berbagai media, dari
+                    kartu nama hingga signage besar, menjadikannya pilihan
+                    ideal untuk brand bisnis, agensi kreatif, maupun identitas
+                    korporasi yang ingin tampil authoritative dan elegan.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Typography</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku7.png"
+                    alt="GS Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">GS Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menampilkan monogram futuristik yang menyatukan
+                    huruf G dan S dengan desain geometris yang tegas dan
+                    inovatif. Kedua huruf dirancang dengan garis-garis presisi
+                    yang membentuk struktur angular yang dinamis dan modern.
+                    Pendekatan minimalis dengan emphasis pada bentuk geometric
+                    memberikan kesan professional sekaligus cutting-edge.
+                    Desain berbasis vektor memungkinkan skalabilitas sempurna
+                    dari aplikasi kecil hingga large format, sementara
+                    karakternya yang distinctive membuatnya mudah dikenali dan
+                    diingat. Logo ini sangat cocok untuk brand teknologi,
+                    startup digital, agensi kreatif, maupun perusahaan yang
+                    ingin menonjolkan identitas progressive dan forward-thinking
+                    dengan visual impact yang kuat.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Typography</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku8.png"
+                    alt="B Butterfly Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">B Butterfly Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menghadirkan perpaduan kreatif antara huruf B
+                    dengan siluet kupu-kupu yang anggun dan estetik. Huruf B
+                    dirancang dengan proporsi yang elegan dan terintegrasi
+                    sempurna dengan bentuk sayap kupu-kupu sebagai elemen visual
+                    utama. Kupu-kupu melambangkan transformasi, keindahan, dan
+                    pertumbuhan, sedangkan tipografi yang refined menunjukkan
+                    profesionalisme dan kualitas. Desain minimalis berbasis
+                    garis dengan detail yang subtle menciptakan kesan feminine
+                    namun tetap kuat dan memorable. Format vektor memungkinkan
+                    aplikasi fleksibel pada berbagai media, menjadikannya
+                    pilihan sempurna untuk brand fashion, beauty, lifestyle,
+                    hingga produk premium yang ingin menonjolkan aspek keindahan
+                    visual dan transformasi positif.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Typography</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portfolio-item" data-category="logoku">
+                <div class="item-image">
+                  <img
+                    src="logoku9.png"
+                    alt="RV or RN Ambigram Logo"
+                    class="item-icon"
+                  />
+                </div>
+                <div class="item-info">
+                  <h3 class="item-title">RV / RN Ambigram Logo</h3>
+                  <p class="item-category">Logo Design</p>
+                  <p class="item-description">
+                    Logo ini menampilkan monogram ambigram yang unik dengan
+                    perpaduan huruf R dan V (atau R dan N) yang dirancang dalam
+                    bentuk garis geometris yang presisi dan dinamis. Konsep
+                    ambigram memungkinkan logo tetap terbaca dari berbagai
+                    sudut pandang, menciptakan fleksibilitas visual yang luar
+                    biasa. Desain menggunakan pendekatan minimalis dengan
+                    emphasis pada struktur geometric yang clean dan modern.
+                    Garis-garis tegas dan proporsi yang seimbang memberikan
+                    kesan professional sekaligus innovative. Format vektor
+                    memastikan konsistensi penerapan pada semua media, dari
+                    digital hingga print. Logo ini sangat cocok untuk brand
+                    kreatif, startup teknologi, consulting firm, maupun
+                    identitas profesional yang ingin tampil distinctive dan
+                    memorable dengan pendekatan design yang sophisticated.
+                  </p>
+                  <div class="item-tags">
+                    <span class="tag">CorelDRAW</span>
+                    <span class="tag">Vector Design</span>
+                    <span class="tag">Typography</span>
+                    <span class="tag">Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+
+          
+
+          <!-- Komisi Series - Commission Works Group -->
+          <div class="portfolio-group" data-group="komisi">
+            <h3 class="group-title">Commission Works</h3>
+            <div class="portfolio-grid">
+              <div class="portfolio-item" data-category="komisi">
+  <div class="item-image">
+    <img
+      src="Komisi.jpg"
+      alt="Commission Work"
+      class="item-icon"
+    />
+  </div>
+  <div class="item-info">
+    <h3 class="item-title">Custom Design Commission</h3>
+    <p class="item-category">Custom Design</p>
+    <p class="item-description">
+      Logo ini merupakan hasil desain khusus berdasarkan permintaan klien 
+      (teman saya) dengan gaya tipografi minimalis dan sentuhan garis dekoratif. 
+      Proses pengerjaan dilakukan sesuai arahan klien sehingga menghasilkan identitas 
+      visual yang sesuai dengan keinginan dan kebutuhan.
+    </p>
+    <div class="item-tags">
+      <span class="tag">Commission</span>
+      <span class="tag">Custom Design</span>
+      <span class="tag">Client Work</span>
+    </div>
+  </div>
+</div>
+
+
+
+
+              </div>
+            </div>
+          <!-- IoT Projects Group -->
+<div class="portfolio-group" data-group="iot">
+  <h3 class="group-title">IoT Projects</h3>
+  <div class="portfolio-grid">
+    
+    <div class="portfolio-item" data-category="iot" style="cursor: default;">
+      <div class="item-image" style="display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div style="text-align: center; color: white;">
+          <h4 style="font-size: 1.5em; font-weight: 600; margin: 0;">Coming Soon</h4>
+        </div>
+      </div>
+      <div class="item-info">
+        <h3 class="item-title">IoT Projects Documentation</h3>
+        <p class="item-category">In Development</p>
+        <p class="item-description">
+          Sedang dalam tahap persiapan dokumentasi untuk proyek-proyek IoT yang telah dikerjakan. 
+          Akan segera hadir dengan detail lengkap mengenai sistem smart home, monitoring sensor, 
+          dan integrasi dengan platform cloud.
+        </p>
+        <div class="item-tags">
+          <span class="tag">ESP32</span>
+          <span class="tag">Arduino IDE</span>
+          <span class="tag">IoT Sensors</span>
+          <span class="tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for portfolio items -->
+    <div id="portfolioModal" class="modal">
+      <div class="modal-content">
+        <span class="close" aria-label="Close modal">&times;</span>
+        <div id="modalContent">
+          <!-- Content will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+// Mobile menu toggle
+const mobileToggle = document.querySelector(".mobile-menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+mobileToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  const icon = mobileToggle.querySelector("i");
+  icon.classList.toggle("fa-bars");
+  icon.classList.toggle("fa-times");
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".nav-container")) {
+    navLinks.classList.remove("active");
+    const icon = mobileToggle.querySelector("i");
+    icon.classList.add("fa-bars");
+    icon.classList.remove("fa-times");
+  }
+});
+
+// Image Gallery Handler
+function initImageGalleries() {
+  const galleries = document.querySelectorAll('.image-gallery');
+  
+  galleries.forEach(gallery => {
+    const mainImage = gallery.querySelector('.gallery-main-image');
+    const thumbnails = gallery.querySelectorAll('.gallery-thumb');
+    const currentCounter = gallery.querySelector('.current-image');
+    const totalCounter = gallery.querySelector('.total-images');
+    
+    // Set total images count
+    if (totalCounter) totalCounter.textContent = thumbnails.length;
+    
+    // Add click handlers to thumbnails
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const index = parseInt(thumb.dataset.index);
+        const newSrc = thumb.src;
+        const newAlt = thumb.alt;
+        
+        // Update main image
+        mainImage.style.opacity = '0';
+        setTimeout(() => {
+          mainImage.src = newSrc;
+          mainImage.alt = newAlt;
+          mainImage.style.opacity = '1';
+        }, 150);
+        
+        // Update active thumbnail
+        thumbnails.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        
+        // Update counter
+        if (currentCounter) currentCounter.textContent = index + 1;
+      });
+    });
+  });
+}
+
+// Portfolio filter with main and sub-filter system
+const mainFilterButtons = document.querySelectorAll(".main-filter-btn");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const portfolioGroups = document.querySelectorAll(".portfolio-group");
+const portfolioItems = document.querySelectorAll(".portfolio-item");
+
+// Define category mappings
+const designCategories = ['lg', 'logoku', 'hmte', 'serum', 'komisi'];
+const iotCategories = ['iot'];
+
+// Main filter handler
+mainFilterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Update active main filter
+    mainFilterButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
+    
+    const mainFilterValue = button.getAttribute("data-main-filter");
+    
+    // Reset sub-filter to "all"
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    const allSubFilter = document.querySelector('.filter-btn[data-filter="all"]');
+    if (allSubFilter) {
+      allSubFilter.classList.add("active");
+    }
+    
+    // Update sub-filter visibility and options
+    updateSubFilters(mainFilterValue);
+    
+    // Filter portfolio groups based on main filter
+    filterPortfolioByMain(mainFilterValue);
+  });
+});
+
+// Sub-filter handler
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Update active sub-filter
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
+    
+    const filterValue = button.getAttribute("data-filter");
+    const currentMainFilter = document.querySelector(".main-filter-btn.active")?.getAttribute("data-main-filter") || "all";
+    
+    // Apply sub-filter
+    filterPortfolioBySubFilter(currentMainFilter, filterValue);
+  });
+});
+
+function updateSubFilters(mainFilter) {
+  filterButtons.forEach((btn) => {
+    const filterValue = btn.getAttribute("data-filter");
+    
+    // Show/hide sub-filters based on main filter
+    if (mainFilter === "design") {
+      if (designCategories.includes(filterValue)) {
+        btn.style.display = "block";
+        btn.style.opacity = "1";
+      } else {
+        btn.style.display = "none";
+        btn.style.opacity = "0";
+      }
+    } else if (mainFilter === "iot") {
+      if (iotCategories.includes(filterValue)) {
+        btn.style.display = "block";
+        btn.style.opacity = "1";
+      } else {
+        btn.style.display = "none";
+        btn.style.opacity = "0";
+      }
+    }
+  });
+}
+
+function filterPortfolioByMain(mainFilter) {
+  if (mainFilter === "design") {
+    showGroupsByCategories(designCategories);
+  } else if (mainFilter === "iot") {
+    showGroupsByCategories(iotCategories);
+  }
+}
+
+function filterPortfolioBySubFilter(mainFilter, subFilter) {
+  if (subFilter === "all") {
+    // If "all" is selected, show based on main filter
+    filterPortfolioByMain(mainFilter);
+  } else {
+    // Show only specific sub-category
+    portfolioGroups.forEach((group) => {
+      const groupType = group.getAttribute("data-group");
+      if (groupType === subFilter) {
+        group.style.display = "block";
+        group.style.animation = "slideInUp 0.6s ease-out both";
+      } else {
+        group.style.display = "none";
+      }
+    });
+  }
+}
+
+function showAllGroups() {
+  portfolioGroups.forEach((group, index) => {
+    group.style.display = "block";
+    group.style.animation = `slideInUp 0.6s ease-out ${index * 0.1}s both`;
+  });
+}
+
+function showGroupsByCategories(categories) {
+  let visibleIndex = 0;
+  portfolioGroups.forEach((group) => {
+    const groupType = group.getAttribute("data-group");
+    if (categories.includes(groupType)) {
+      group.style.display = "block";
+      group.style.animation = `slideInUp 0.6s ease-out ${visibleIndex * 0.1}s both`;
+      visibleIndex++;
+    } else {
+      group.style.display = "none";
+    }
+  });
+}
+
+// View toggle functionality
+const toggleButtons = document.querySelectorAll('.toggle-btn');
+let currentView = 'compact'; // Track current view
+
+function setCompactView() {
+  portfolioItems.forEach(item => {
+    item.classList.add('compact-view');
+  });
+  currentView = 'compact';
+}
+
+function setDetailedView() {
+  portfolioItems.forEach(item => {
+    item.classList.remove('compact-view');
+  });
+  currentView = 'detailed';
+}
+
+// Toggle button handlers
+toggleButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Update active toggle button
+    toggleButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    
+    const viewType = button.getAttribute('data-view');
+    
+    if (viewType === 'compact') {
+      setCompactView();
+    } else {
+      setDetailedView();
+    }
+  });
+});
+
+// Portfolio item click handler for modal and toggle
+const modal = document.getElementById("portfolioModal");
+const modalContent = document.getElementById("modalContent");
+const closeBtn = document.querySelector(".close");
+
+portfolioItems.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    // Don't open modal if clicking on gallery thumbnails
+    if (e.target.classList.contains('gallery-thumb')) return;
+    
+    // Prevent event bubbling
+    e.stopPropagation();
+    
+    // Jika dalam compact view, toggle ke detailed view untuk item tersebut
+    if (currentView === 'compact' && item.classList.contains('compact-view')) {
+      // Remove compact view from this specific item
+      item.classList.remove('compact-view');
+      
+      // Smooth scroll to the item after a short delay
+      setTimeout(() => {
+        item.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }, 300);
+      
+      return; // Don't open modal, just expand
+    }
+    
+    // Open modal for detailed view or already expanded items
+    const title = item.querySelector(".item-title").textContent;
+    const category = item.querySelector(".item-category").textContent;
+    const description = item.querySelector(".item-description").textContent;
+    const imageSrc = item.querySelector(".gallery-main-image")?.src || item.querySelector(".item-icon")?.src || "";
+    const tags = Array.from(item.querySelectorAll(".tag")).map(
+      (tag) => tag.textContent
+    );
+
+    modalContent.innerHTML = `
+      <div style="text-align: center; margin-bottom: 25px;">
+        ${
+          imageSrc
+            ? `<img src="${imageSrc}" alt="${title}" style="max-width: 200px; max-height: 200px; object-fit: contain; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">`
+            : ""
+        }
+      </div>
+      <h2 style="color: #2d3436; margin-bottom: 8px; font-size: 1.8em; font-weight: 700;">${title}</h2>
+      <p style="color: #667eea; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9em;">${category}</p>
+      <p style="color: #6c757d; line-height: 1.7; margin-bottom: 25px; font-size: 1.05em;">${description}</p>
+      <div style="margin-bottom: 25px;">
+        <h4 style="color: #2d3436; margin-bottom: 12px; font-weight: 600;">Tools & Technologies:</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          ${tags
+            .map(
+              (tag) =>
+                `<span style="background: linear-gradient(45deg, #f8f9fa, #e9ecef); color: #495057; padding: 6px 14px; border-radius: 20px; font-size: 0.85em; font-weight: 500; border: 1px solid #dee2e6;">${tag}</span>`
+            )
+            .join("")}
+        </div>
+      </div>
+    `;
+
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+  });
+});
+
+// Add double-click to expand all in compact view
+portfolioItems.forEach((item) => {
+  let clickCount = 0;
+  let clickTimer = null;
+  
+  item.addEventListener("click", () => {
+    clickCount++;
+    
+    if (clickCount === 1) {
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 300);
+    } else if (clickCount === 2) {
+      clearTimeout(clickTimer);
+      clickCount = 0;
+      
+      // Double click: expand all items in current view
+      if (currentView === 'compact') {
+        setDetailedView();
+        // Update toggle button
+        toggleButtons.forEach(btn => btn.classList.remove('active'));
+        document.querySelector('[data-view="detailed"]')?.classList.add('active');
+      }
+    }
+  });
+});
+
+// Close modal handlers
+closeBtn.addEventListener("click", closeModal);
+
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    closeModal();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.style.display === "block") {
+    closeModal();
+  }
+});
+
+function closeModal() {
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      navLinks.classList.remove("active");
+      const icon = mobileToggle.querySelector("i");
+      icon.classList.add("fa-bars");
+      icon.classList.remove("fa-times");
+    }
+  });
+});
+
+// Enhanced navbar scroll effect
+let lastScrollTop = 0;
+window.addEventListener("scroll", () => {
+  const navbar = document.querySelector(".navbar");
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (currentScroll > 50) {
+    navbar.style.background = "rgba(255, 255, 255, 0.98)";
+    navbar.style.backdropFilter = "blur(25px)";
+    navbar.style.boxShadow = "0 2px 25px rgba(0, 0, 0, 0.15)";
+  } else {
+    navbar.style.background = "rgba(255, 255, 255, 0.95)";
+    navbar.style.backdropFilter = "blur(20px)";
+    navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.1)";
+  }
+
+  if (currentScroll > lastScrollTop && currentScroll > 100) {
+    navbar.style.transform = "translateY(-100%)";
+  } else {
+    navbar.style.transform = "translateY(0)";
+  }
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+});
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: "0px 0px -50px 0px",
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = "1";
+      entry.target.style.transform = "translateY(0)";
+    }
+  });
+}, observerOptions);
+
+document
+  .querySelectorAll(".portfolio-group, .section-title, .section-subtitle")
+  .forEach((el) => {
+    observer.observe(el);
+  });
+
+// Initialize filter system and galleries
+document.addEventListener("DOMContentLoaded", () => {
+  // Set initial compact view
+  setCompactView();
+  
+  // Initialize other components
+  updateSubFilters("all");
+  initImageGalleries();
+  
+  // Add loading animation
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    document.body.style.transition = "opacity 0.8s ease";
+    document.body.style.opacity = "1";
+  }, 100);
+});
+
+// Enhanced portfolio item hover effects
+portfolioItems.forEach((item) => {
+  const image = item.querySelector(".item-image");
+
+  item.addEventListener("mouseenter", () => {
+    item.style.transform = "translateY(-8px) scale(1.02)";
+    if (image) {
+      image.style.filter = "brightness(1.05) saturate(1.1)";
+    }
+  });
+
+  item.addEventListener("mouseleave", () => {
+    item.style.transform = "translateY(0) scale(1)";
+    if (image) {
+      image.style.filter = "brightness(1) saturate(1)";
+    }
+  });
+});
+
+// Lazy loading for images
+const imageObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.style.opacity = "1";
+      img.style.transform = "scale(1)";
+      imageObserver.unobserve(img);
+    }
+  });
+});
+
+document.querySelectorAll(".gallery-main-image, .item-icon").forEach((img) => {
+  img.style.opacity = "0";
+  img.style.transform = "scale(0.9)";
+  img.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+  imageObserver.observe(img);
+});
+
+// Add parallax effect to floating shapes
+window.addEventListener("scroll", () => {
+  const scrolled = window.pageYOffset;
+  const shapes = document.querySelectorAll(".shape");
+
+  shapes.forEach((shape, index) => {
+    const speed = 0.5 + index * 0.2;
+    shape.style.transform = `translateY(${scrolled * speed}px)`;
+  });
+});
+
+// Add accessibility features
+portfolioItems.forEach((item) => {
+  item.setAttribute("tabindex", "0");
+  item.setAttribute("role", "button");
+  item.setAttribute(
+    "aria-label",
+    `View details for ${item.querySelector(".item-title").textContent}`
+  );
+});
+
+// Enhanced keyboard navigation
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    if (e.target.classList.contains("portfolio-item")) {
+      e.target.click();
+      e.preventDefault();
+    }
+  }
+});
+
+// Add click outside to collapse expanded items in compact view
+document.addEventListener("click", (e) => {
+  if (currentView === 'compact' && !e.target.closest('.portfolio-item') && !e.target.closest('.modal')) {
+    // Collapse all expanded items back to compact view
+    portfolioItems.forEach(item => {
+      if (!item.classList.contains('compact-view')) {
+        item.classList.add('compact-view');
+      }
+    });
+  }
+});
+
+console.log("Portfolio loaded successfully with toggle view system!");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV Muhammad Syahrul Adam Saputra - PDF Version</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        line-height: 1.4;
+        color: #333;
+        background: white;
+        font-size: 11pt;
+      }
+
+      .cv-container {
+        width: 100%;
+        max-width: 210mm;
+        margin: 0 auto;
+        background: white;
+        position: relative;
+        overflow: visible;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      /* Header Section */
+      .header {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: white;
+        padding: 20mm 15mm 15mm 15mm;
+        position: relative;
+        page-break-inside: avoid;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        gap: 15mm;
+        flex-wrap: wrap;
+      }
+
+      .profile-photo {
+        width: 35mm;
+        height: 35mm;
+        border-radius: 50%;
+        border: 3px solid white;
+        background: #f8f9fa;
+        flex-shrink: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .profile-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .profile-photo .fallback-icon {
+        font-size: 20px;
+        color: #2c3e50;
+      }
+
+      .header-text {
+        flex: 1;
+        min-width: 120mm;
+      }
+
+      .name {
+        font-size: 22pt;
+        font-weight: 700;
+        margin-bottom: 5mm;
+        letter-spacing: 0.5px;
+      }
+
+      .title {
+        font-size: 13pt;
+        margin-bottom: 8mm;
+        opacity: 0.9;
+        font-weight: 300;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3mm 8mm;
+        font-size: 10pt;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 3mm;
+      }
+
+      .contact-item i {
+        width: 4mm;
+        text-align: center;
+        color: #3498db;
+      }
+
+      /* Clickable links styling */
+      .contact-link {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-radius: 10px;
+        padding: 1px 2px;
+      }
+
+      .contact-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        text-decoration: underline;
+      }
+
+      /* Ensure links work in PDF */
+      .contact-link:link,
+      .contact-link:visited {
+        color: inherit;
+      }
+
+      /* Main Content */
+      .main-content {
+        display: flex;
+        min-height: auto;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        background: #ecf0f1;
+        padding: 12mm 10mm 12mm 12mm;
+        border-right: 2px solid #bdc3c7;
+        width: 65mm;
+        flex-shrink: 0;
+      }
+
+      .sidebar-section {
+        margin-bottom: 10mm;
+        page-break-inside: avoid;
+        background: white;
+        padding: 8mm;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .sidebar-title {
+        font-size: 11pt;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 6mm;
+        padding-bottom: 2mm;
+        border-bottom: 2px solid #3498db;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .skill-item {
+        margin-bottom: 5mm;
+      }
+
+      .skill-name {
+        font-weight: 600;
+        margin-bottom: 2mm;
+        font-size: 9pt;
+      }
+
+      .skill-level {
+        font-size: 7pt;
+        padding: 1mm 3mm;
+        border-radius: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+
+      .skill-level.expert {
+        background: #27ae60;
+        color: white;
+      }
+
+      .skill-level.advanced {
+        background: #3498db;
+        color: white;
+      }
+
+      .skill-level.intermediate {
+        background: #f39c12;
+        color: white;
+      }
+
+      .skill-level.beginner {
+        background: #95a5a6;
+        color: white;
+      }
+
+      .tools-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2mm;
+      }
+
+      .tool-tag {
+        background: #34495e;
+        color: white;
+        padding: 1.5mm 3mm;
+        border-radius: 10px;
+        font-size: 7pt;
+        font-weight: 500;
+      }
+
+      .language-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3mm;
+        font-size: 9pt;
+      }
+
+      .language-level {
+        background: #3498db;
+        color: white;
+        padding: 1mm 3mm;
+        border-radius: 12px;
+        font-size: 7pt;
+        font-weight: 600;
+      }
+
+      /* Content Area */
+      .content {
+        padding: 12mm 12mm 12mm 10mm;
+        flex: 1;
+      }
+
+      .content-section {
+        margin-bottom: 10mm;
+        page-break-inside: avoid;
+      }
+
+      .content-title {
+        font-size: 13pt;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 6mm;
+        padding: 4mm 0 2mm 0;
+        border-bottom: 3px solid #e74c3c;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .profile-text {
+        text-align: justify;
+        line-height: 1.5;
+        font-size: 10pt;
+        background: #f8f9fa;
+        padding: 8mm;
+        border-radius: 12px;
+        border-left: 4px solid #3498db;
+      }
+
+      .experience-item,
+      .education-item {
+        margin-bottom: 8mm;
+        padding: 5mm;
+        background: #f8f9fa;
+        border-left: 4px solid #e74c3c;
+        border-radius: 12px;
+        page-break-inside: avoid;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      .job-title,
+      .degree {
+        font-size: 11pt;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 2mm;
+      }
+
+      .company,
+      .school {
+        font-size: 9pt;
+        color: #7f8c8d;
+        font-weight: 600;
+        margin-bottom: 2mm;
+        background: rgba(52, 73, 94, 0.1);
+        padding: 1mm 3mm;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      .period {
+        font-size: 8pt;
+        color: #e74c3c;
+        font-weight: 600;
+        margin-bottom: 3mm;
+        background: rgba(231, 76, 60, 0.1);
+        padding: 1mm 3mm;
+        border-radius: 10px;
+        display: inline-block;
+      }
+
+      .description {
+        font-size: 9pt;
+        line-height: 1.4;
+        text-align: justify;
+      }
+
+      .achievement-item {
+        background: #fff9e6;
+        border-left-color: #f1c40f;
+        border-radius: 12px;
+      }
+
+      /* Print Optimization */
+      @media print {
+        body {
+          margin: 0;
+          padding: 0;
+          background: white !important;
+        }
+
+        .cv-container {
+          width: 100% !important;
+          max-width: none !important;
+          margin: 0 !important;
+          box-shadow: none !important;
+          page-break-inside: avoid;
+          border-radius: 0 !important;
+          overflow: visible !important;
+        }
+
+        .header {
+          padding: 15mm 12mm 12mm 12mm !important;
+          page-break-inside: avoid;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          border-radius: 0 !important;
+        }
+
+        .main-content {
+          display: flex !important;
+          page-break-inside: avoid;
+        }
+
+        .sidebar {
+          width: 60mm !important;
+          padding: 10mm 8mm !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .sidebar-section {
+          border-radius: 8px !important;
+          margin-bottom: 6mm !important;
+          padding: 6mm !important;
+          box-shadow: none !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .content {
+          padding: 10mm !important;
+          flex: 1 !important;
+        }
+
+        .content-section {
+          page-break-inside: avoid;
+          margin-bottom: 8mm !important;
+        }
+
+        .experience-item,
+        .education-item {
+          page-break-inside: avoid;
+          margin-bottom: 6mm !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          border-radius: 8px !important;
+          box-shadow: none !important;
+        }
+
+        .profile-text {
+          border-radius: 8px !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .skill-level,
+        .tool-tag,
+        .language-level {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          border-radius: 8px !important;
+        }
+
+        .company,
+        .school,
+        .period {
+          border-radius: 6px !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .content-title {
+          border-radius: 0 0 6px 6px !important;
+        }
+
+        .contact-link {
+          border-radius: 6px !important;
+        }
+
+        .name {
+          font-size: 20pt !important;
+        }
+
+        .title {
+          font-size: 12pt !important;
+        }
+
+        .contact-grid {
+          font-size: 9pt !important;
+        }
+
+        @page {
+          size: A4;
+          margin: 8mm;
+        }
+      }
+
+      /* Screen Preview */
+      @media screen {
+        body {
+          background: #95a5a6;
+          padding: 20px;
+        }
+
+        .cv-container {
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cv-container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-content">
+          <div class="profile-photo">
+            <img
+              src="adam.png"
+              alt="Muhammad Syahrul Adam Saputra"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <div class="fallback-icon" style="display: none">
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
+          <div class="header-text">
+            <h1 class="name">MUHAMMAD SYAHRUL ADAM SAPUTRA</h1>
+            <p class="title">Graphic Designer | IoT Engineer</p>
+            <div class="contact-grid">
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:syahruladam5252@gmail.com" class="contact-link"
+                  >syahruladam5252@gmail.com</a
+                >
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <a href="tel:+6281546559844" class="contact-link"
+                  >081546559844</a
+                >
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <a
+                  href="https://maps.google.com/?q=Bandung,Indonesia"
+                  target="_blank"
+                  class="contact-link"
+                  >Bandung, Indonesia</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Design Skills -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">
+              <i class="fas fa-paint-brush"></i> Keahlian Desain
+            </h3>
+            <div class="skill-item">
+              <div class="skill-name">CorelDRAW</div>
+              <span class="skill-level expert">Expert</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Adobe Illustrator</div>
+              <span class="skill-level advanced">Advanced</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Logo Design</div>
+              <span class="skill-level advanced">Advanced</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Banner & Poster Design</div>
+              <span class="skill-level expert">Expert</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Social Media Templates</div>
+              <span class="skill-level advanced">Advanced</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">UI/UX Design</div>
+              <span class="skill-level intermediate">Intermediate</span>
+            </div>
+          </div>
+
+          <!-- Technical Skills -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">
+              <i class="fas fa-microchip"></i> Keahlian Teknis
+            </h3>
+            <div class="skill-item">
+              <div class="skill-name">Python Programming</div>
+              <span class="skill-level advanced">Advanced</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">IoT Development</div>
+              <span class="skill-level advanced">Advanced</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Arduino/ESP32</div>
+              <span class="skill-level expert">Expert</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Electronics Design</div>
+              <span class="skill-level advanced">Advanced</span>
+            </div>
+          </div>
+
+          <!-- Tools & Software -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">
+              <i class="fas fa-tools"></i> Tools & Software
+            </h3>
+            <div class="tools-list">
+              <span class="tool-tag">CorelDRAW</span>
+              <span class="tool-tag">Illustrator</span>
+              <span class="tool-tag">Photoshop</span>
+              <span class="tool-tag">Canva</span>
+              <span class="tool-tag">Figma</span>
+              <span class="tool-tag">Arduino IDE</span>
+              <span class="tool-tag">Python</span>
+              <span class="tool-tag">JavaScript</span>
+              <span class="tool-tag">PHP</span>
+            </div>
+          </div>
+
+          <!-- Languages -->
+          <div class="sidebar-section">
+            <h3 class="sidebar-title">
+              <i class="fas fa-language"></i> Bahasa
+            </h3>
+            <div class="language-item">
+              <span>Bahasa Indonesia</span>
+              <span class="language-level">Native</span>
+            </div>
+            <div class="language-item">
+              <span>English</span>
+              <span class="language-level">Intermediate</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+          <!-- Profile -->
+          <div class="content-section">
+            <h2 class="content-title">
+              <i class="fas fa-user-circle"></i> Profil
+            </h2>
+            <p class="profile-text">
+              Mahasiswa tingkat akhir Teknik Elektro dengan passion dalam desain
+              grafis sejak 2018. Memiliki pengalaman lebih dari 6 tahun dalam
+              desain grafis yang dimulai dari penggunaan CorelDRAW di bangku
+              SMK, berkembang hingga menghasilkan berbagai karya seperti banner,
+              kalender, sampul buku, dan template media sosial. Menguasai
+              kombinasi unik antara keahlian teknis di bidang IoT, programming,
+              dan elektronika dengan kreativitas desain yang terasah melalui
+              proyek nyata. Telah meraih juara nasional dalam lomba IoT yang
+              mencerminkan kemampuan merancang solusi teknologi cerdas dengan
+              pendekatan visual yang menarik.
+            </p>
+          </div>
+
+          <!-- Design Experience -->
+          <div class="content-section">
+            <h2 class="content-title">
+              <i class="fas fa-paint-brush"></i> Pengalaman Desain Grafis
+            </h2>
+
+            <div class="experience-item">
+              <div class="job-title">Creative Designer - Divisi Kominfo</div>
+              <div class="company">Himpunan Mahasiswa Teknik Elektro</div>
+              <div class="period">2020 – 2023</div>
+              <div class="description">
+                • Merancang poster, banner, dan materi promosi untuk kegiatan
+                organisasi<br />
+                • Membuat identitas visual serta materi publikasi untuk berbagai
+                event<br />
+                • Mengembangkan template postingan media sosial untuk
+                konsistensi branding<br />
+                • Mendesain merchandise dan souvenir organisasi
+              </div>
+            </div>
+
+            <div class="experience-item">
+              <div class="job-title">
+                Online Logo Designer & Contest Participant
+              </div>
+              <div class="company">
+                Logoground, Design Contest, Various Design Platforms
+              </div>
+              <div class="period">2020 - 2021</div>
+              <div class="description">
+                • Berpartisipasi aktif dalam kompetisi desain logo di platform
+                online<br />
+                • Menganalisis brief client dan menginterpretasikan kebutuhan
+                visual brand<br />
+                • Mempelajari market trend dan preferensi desain dari berbagai
+                industri
+              </div>
+            </div>
+
+            <div class="experience-item">
+              <div class="job-title">Graphic Designer - Seni Rupa</div>
+              <div class="company">UKM Seni Rupa</div>
+              <div class="period">2022 – 2023</div>
+              <div class="description">
+                • Berkontribusi dalam bidang seni desain grafis di UKM Seni
+                Rupa<br />
+                • Merancang materi visual untuk kegiatan seni dan publikasi
+                internal UKM<br />
+                • Mengembangkan identitas visual UKM melalui karya desain grafis
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Experience -->
+          <div class="content-section">
+            <h2 class="content-title">
+              <i class="fas fa-microchip"></i> Pengalaman Teknis & IoT
+            </h2>
+
+            <div class="experience-item">
+              <div class="job-title">
+                Freelance Robotics & Coding Instructor
+              </div>
+              <div class="company">Inorobo Robotics School, Bandung</div>
+              <div class="period">Jul 2023 – Present</div>
+              <div class="description">
+                • Mengajar robotika dan coding untuk anak-anak SD dalam kegiatan
+                ekstrakurikuler dan privat<br />
+                • Materi pembelajaran mencakup Lego robotik, pembuatan game
+                dengan coding, dan mikrokontroler<br />
+                • Melakukan perakitan dan pemrograman robot serta perawatan
+                perangkat pembelajaran
+              </div>
+            </div>
+
+            <div class="experience-item">
+              <div class="job-title">Electronics & IT Intern</div>
+              <div class="company">PT Angkasa Pura II, Bandung</div>
+              <div class="period">Feb 2023 – Mar 2023</div>
+              <div class="description">
+                • Mempersiapkan fasilitas elektronik bandara sebelum operasional
+                dibuka<br />
+                • Melakukan perawatan peralatan seperti WTMD, pemindai tubuh,
+                dan perangkat pendukung<br />
+                • Menangani perbairan serta troubleshoot fasilitas elektronik
+                bandara
+              </div>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="content-section">
+            <h2 class="content-title">
+              <i class="fas fa-graduation-cap"></i> Pendidikan
+            </h2>
+
+            <div class="education-item">
+              <div class="degree">S1 Teknik Elektro</div>
+              <div class="school">Universitas Muhammadiyah Bandung</div>
+              <div class="period">
+                Agu 2020 - Okt 2025 (Sedang menyelesaikan skripsi)
+              </div>
+              <div class="description">
+                • Peminatan: Sistem Kendali, Elektronika, dan Internet of Things
+                (IoT)<br />
+                • Tugas Akhir: Sistem deteksi dini dan pencegahan kebakaran
+                kompor otomatis berbasis IoT dengan machine learning<br />
+                • Aktif dalam Himpunan Mahasiswa Teknik Elektro dan UKM Seni
+                Rupa
+              </div>
+            </div>
+
+            <div class="education-item">
+              <div class="degree">SMK Rekayasa Perangkat Lunak</div>
+              <div class="school">SMK MedikaCom, Bandung</div>
+              <div class="period">Mar 2017 - Apr 2020</div>
+              <div class="description">
+                • Pembelajaran pemrograman: Python, HTML, Java, PHP<br />
+                • Pengembangan aplikasi web dan desktop<br />
+                • Memulai pembelajaran desain grafis dengan CorelDRAW sejak
+                2018<br />
+                • Magang di Museum Geologi Bandung dengan fokus desain dan IT
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievements -->
+          <div class="content-section">
+            <h2 class="content-title">
+              <i class="fas fa-trophy"></i> Pencapaian
+            </h2>
+            <div class="experience-item achievement-item">
+              <div class="job-title">
+                🏆 Juara Nasional IoT EARTH 6.0 (2023)
+              </div>
+              <div class="description">
+                Mengembangkan prototype sistem bendungan otomatis berbasis IoT
+                untuk mencegah banjir dan mengoperasikan bendungan dari jarak
+                jauh secara efisien. Proyek ini menggabungkan teknologi IoT
+                dengan visualisasi data yang user-friendly dan interface design
+                yang intuitif.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
